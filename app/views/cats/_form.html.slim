@@ -1,0 +1,26 @@
+= form_with(model: @cat, local: true, url:choose_new_or_edit) do |form|
+  - if @cat.errors.any?
+    #error_explanation.alert_invalid-l
+      = pluralize(@cat.errors.count, t('view.ProhibitedThiscatFromBeingSaved:'))
+      ul
+        - @cat.errors.full_messages.each do |message|
+          li
+            = message
+  .cat_form_wrapper
+    h1.field.cat_title_form
+      = form.label :name, "名前"
+      = form.text_field :name, size: "20", placeholder: "保護猫名前"
+    .cat_status
+      = form.label :status, "状態"
+      = form.select :status, ["pause","entry", "trial",  "decision"]
+    .cat_image
+      = form.label :image, "写真"
+      = form.file_field :image
+    .cat_sex
+      = form.label :sex, "性別"
+      = form.select :sex, ["male", "female"]
+    div.field.cat_content_form
+      = form.label :profile, "プロフィール"
+      = form.text_area :profile, size: "100x20", placeholder: "プロフィール"
+    div.actions.cat_submit_form
+      = form.submit class:"cat_submit"

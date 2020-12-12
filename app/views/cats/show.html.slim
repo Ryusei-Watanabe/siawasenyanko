@@ -1,0 +1,14 @@
+- if @cat.image.url.present?
+  .image_wrapper
+    = image_tag @cat.image.url
+h1.cat_name
+  = @cat.name
+.cat_status
+  = @cat.status
+.cat_sex
+  = @cat.sex
+.cat_profile
+  = @cat.profile
+= link_to '編集', edit_cat_path(@cat), class: 'btn btn-default'
+= link_to '削除', @cat, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default'
+
