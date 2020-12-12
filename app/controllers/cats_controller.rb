@@ -35,7 +35,7 @@ class CatsController < ApplicationController
   end
   private
   def cat_params
-    params.require(:cat).permit(:name, :sex, :image, :status, :profile)
+    params.require(:cat).permit(:name, :sex, :status, :profile, {images: []})
   end
   def set_cat
     @cat = Cat.find(params[:id])

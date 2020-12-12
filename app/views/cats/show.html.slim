@@ -1,6 +1,7 @@
-- if @cat.image.url.present?
+- if @cat.images.present?
   .image_wrapper
-    = image_tag @cat.image.url
+    - @cat.images.each do |image|
+      = image_tag image.url
 h1.cat_name
   = @cat.name
 .cat_status

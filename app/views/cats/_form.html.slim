@@ -13,14 +13,22 @@
     .cat_status
       = form.label :status, "状態"
       = form.select :status, ["pause","entry", "trial",  "decision"]
-    .cat_image
-      = form.label :image, "写真"
-      = form.file_field :image
+
+
+    .cat_images
+      = form.label :images, "写真"
+      br
+      -@cat.images.each do |image|
+        = hidden_field :cat, :images, multiple: true
+        = image_tag image.url
+      = form.file_field :images, multiple: true
+      br
+
     .cat_sex
       = form.label :sex, "性別"
       = form.select :sex, ["male", "female"]
     div.field.cat_content_form
-      = form.label :profile, "プロフィール"
+      / = form.label :profile, "プロフィール"
       = form.text_area :profile, size: "100x20", placeholder: "プロフィール"
     div.actions.cat_submit_form
       = form.submit class:"cat_submit"
